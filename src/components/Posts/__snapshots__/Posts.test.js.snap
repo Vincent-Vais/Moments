@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Posts component renders presentational component 1`] = `
+<div
+  className="makeStyles-container-7"
+>
+  <Component
+    gridClass="makeStyles-0-1"
+    key="0"
+    post={
+      Object {
+        "comment": "lorem ipsum sit emiet dolor lorem ipsum sit emiet dolorlorem ipsum sit emiet dolorlorem ipsum sitemiet dolor lorem ipsum sit emiet dolorlorem ipsum sit emiet dolor",
+        "imageUrl": "https://images.unsplash.com/photo-1602411583503-195316dad599?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+        "username": "vince_vais",
+      }
+    }
+  />
+  <Component
+    gridClass="makeStyles-1-2"
+    key="1"
+    post={
+      Object {
+        "comment": "lorem ipsum sit emiet dolor lorem ipsum sit emiet dolorlorem ipsum sit emiet dolorlorem ipsum sitemiet dolor lorem ipsum sit emiet dolorlorem ipsum sit emiet dolor",
+        "imageUrl": "https://images.unsplash.com/photo-1602411583503-195316dad599?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+        "username": "vince_vais",
+      }
+    }
+  />
+</div>
+`;

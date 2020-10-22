@@ -1,4 +1,9 @@
-const INIT_STATE = [
+import React from "react";
+import { shallow } from "enzyme";
+import Post from "./Posts.component";
+import { mockClasses } from "../../setupTests";
+
+const mockPosts = [
   {
     username: "vince_vais",
     imageUrl:
@@ -15,11 +20,13 @@ const INIT_STATE = [
   },
 ];
 
-const postsReducer = (state = INIT_STATE, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+const getPresentComponent = () => (
+  <Post posts={mockPosts} classes={mockClasses} />
+);
 
-export default postsReducer;
+describe("Posts component", () => {
+  it("renders presentational component", () => {
+    const component = shallow(getPresentComponent());
+    expect(component).toMatchSnapshot();
+  });
+});

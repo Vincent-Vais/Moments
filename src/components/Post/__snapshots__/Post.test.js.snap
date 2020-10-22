@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post component renders presentational component 1`] = `
+<div
+  className="undefined undefined"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div>
+    <WithStyles(ForwardRef(Avatar))
+      alt="vince_vais"
+      src="/static/image1.png"
+    />
+    <h3>
+      vince_vais
+    </h3>
+  </div>
+  <img
+    alt="lorem"
+    src="https://images.unsplash.com/photo-1602411583503-195316dad599?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+  />
+  <h4>
+    <span>
+      @
+      vince_vais
+      :
+    </span>
+     
+    lorem ipsum sit...
+  </h4>
+</div>
+`;
