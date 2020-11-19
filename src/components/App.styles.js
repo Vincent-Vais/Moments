@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
     background: `${theme.palette.bcg.dark}`,
     width: "100vw",
     minHeight: "100vh",
+    paddingBottom: "22.5vh",
   },
 }));
 
