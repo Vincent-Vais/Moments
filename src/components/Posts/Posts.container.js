@@ -19,6 +19,7 @@ function Container({ Component, ...otherProps }) {
   useEffect(() => {
     const postsOff = db
       .collection("posts")
+      .orderBy("timestamp", "desc")
       .onSnapshot((snap) =>
         dispatch(
           updatePosts(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })))

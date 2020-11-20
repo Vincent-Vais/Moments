@@ -1,4 +1,4 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, LinearProgress } from "@material-ui/core";
 import PublishIcon from "@material-ui/icons/Publish";
 import React from "react";
 
@@ -11,10 +11,16 @@ const PostForm = ({
 }) => {
   const { text, handleText } = textInput;
   const { image, handleImage } = imageInput;
-  const { progress, handleProgress } = progressInput;
+  const { progress } = progressInput;
 
   return (
     <div className={classes.upload}>
+      <LinearProgress
+        variant="determinate"
+        value={progress}
+        className={classes.progress}
+        style={{ opacity: `${progress ? 1 : 0}` }}
+      />
       <div>
         <TextField
           id="filled-basic"
@@ -25,6 +31,13 @@ const PostForm = ({
           value={text}
           onChange={handleText}
         />
+        {image ? (
+          <img
+            src={URL.createObjectURL(image)}
+            alt=""
+            className={classes.image}
+          />
+        ) : null}
         <div className={classes.fileInputGroup}>
           <label htmlFor="file" className={classes.fileLabel}>
             <PublishIcon className={classes.icon} />

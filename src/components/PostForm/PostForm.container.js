@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { db, storage } from "../../firebase";
+import { db, storage, firebase } from "../../firebase";
+import { useSelector, shallowEqual } from "react-redux";
+import { selectUser } from "../../store/selectors/user";
 import useStyles from "./PostForm.styles";
 
 function Container({ Component, ...otherProps }) {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
+  const user = useSelector(selectUser, shallowEqual);
 
   const handleText = (event) => setText(event.target.value);
 
@@ -15,9 +18,39 @@ function Container({ Component, ...otherProps }) {
     setImage(img);
   };
 
-  const handleProgress = () => console.log("handle progress");
-
-  const handleUpload = () => console.log("handle upload");
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (snap) => {
+        const progress = Math.round(
+          (snap.bytesTransferred / snap.totalBytes) * 100
+        );
+        setProgress(progress);
+        console.log(progress);
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) =>
+            db.collection("posts").add({
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              comment: text,
+              imageUrl: url,
+              username: user,
+            })
+          );
+        setProgress(0);
+        setText("");
+        setImage(null);
+      }
+    );
+  };
 
   const classes = useStyles();
   return (
@@ -26,7 +59,7 @@ function Container({ Component, ...otherProps }) {
       {...otherProps}
       textInput={{ text, handleText }}
       imageInput={{ image, handleImage }}
-      progressInput={{ progress, handleProgress }}
+      progressInput={{ progress, setProgress }}
       handleUpload={handleUpload}
     />
   );

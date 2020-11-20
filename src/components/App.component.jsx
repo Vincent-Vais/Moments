@@ -4,11 +4,11 @@ import Header from "./Header";
 import PostForm from "./PostForm";
 import Posts from "./Posts";
 
-function App({ classes }) {
+function App({ classes, user }) {
   return (
     <div className={classes.app}>
       <Header />
-      <PostForm />
+      {user ? <PostForm /> : null}
       <Posts />
     </div>
   );
